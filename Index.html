@@ -62,7 +62,7 @@
         #finalImage { 
             z-index: 2; 
             opacity: 0;
-            transition: opacity 1.s ease-in;
+            transition: opacity 1.5s ease-in;
         }
         
         .main-content {
@@ -194,7 +194,7 @@
         <div class="content-card max-w-4xl mx-auto">
             <div class="rotated-layout-container">
                 
-                <h1 class="rotatable-item text-3xl md:text-4xl font-black text-white"> <\ زاویه‌ دید متفاوت >  </h1>
+                <h1 class="rotatable-item text-3xl md:text-4xl font-black text-white">  ! زاویه‌ی دید متفاوت  </h1>
                 
                 <p class="rotatable-item text-gradient-animated text-base md:text-lg leading-relaxed">بهبود سبک تفکر و ایجاد نگرش متفاوت از عوامل اصلی در کسب نتایج متفاوت در مسائل مشترک با دیگران خواهد بود . نمیگم قطعا برتری ایجاد می‌کنه اما عامل تمایز میشه ! با تقویت این خاصه، تفاوت هایی رو خلق می‌کنید که گاهی از متفکرین نامدار عصر و حیطه‌ای که توش هستید بیشتر مورد توجه قرار میگیره.</p>
                 <p class="rotatable-item text-gradient-animated text-base md:text-lg leading-relaxed">در طراحی مکانیزم کالکشنر های v2ray همیشه ملاک انتخاب منبع ، مخزن های بروز و فعال سطح وب بوده، و هزاران نمونه از پروژه های عملیاتی شده با این منطق در منابع گیت‌هاب در دسترس هست و خوب عملکرد مطلوبی هم ازشون شاهد هستیم.</p>
@@ -239,6 +239,9 @@
     let headerAnimationFrameId;
     let starfieldAnimationFrameId;
     let resizeTimeout;
+    
+    // --- NEW: Flag to prevent header re-animation ---
+    let headerAnimationCompleted = false;
 
     // --- Particle Header Script (MODIFIED for delayed fade-in) ---
     const headerCanvas = document.getElementById('headerCanvas');
@@ -293,6 +296,8 @@
             fadeInTriggered = true; // Ensure this only runs once
             setTimeout(() => {
                 finalImg.style.opacity = '1';
+                // --- NEW: Mark header animation as completed ---
+                headerAnimationCompleted = true;
             }, 1000); // 1000ms = 1 second delay
         }
 
@@ -300,13 +305,42 @@
     }
 
     function setupHeaderAnimation() {
+        // --- MODIFICATION: Only run if animation hasn't completed ---
+        if (headerAnimationCompleted) {
+            // If animation is already completed, just continue the subtle breathing effect
+            if (particles.length > 0) {
+                // Update canvas size but keep particles in place
+                const oldWidth = headerCanvas.width;
+                const oldHeight = headerCanvas.height;
+                
+                headerCanvas.width = window.innerWidth;
+                headerCanvas.height = 350;
+                
+                // Scale particles to new canvas size
+                const scaleX = headerCanvas.width / oldWidth;
+                const scaleY = headerCanvas.height / oldHeight;
+                
+                particles.forEach(p => {
+                    p.baseX *= scaleX;
+                    p.x *= scaleX;
+                    p.baseY *= scaleY;
+                    p.y *= scaleY;
+                });
+                
+                // Keep final image visible
+                finalImg.style.opacity = '1';
+                animateParticles(); // Continue breathing effect
+            }
+            return;
+        }
+
         if (headerAnimationFrameId) {
             cancelAnimationFrame(headerAnimationFrameId);
         }
         
         particles = [];
-        fadeInTriggered = false; // Reset the trigger on resize
-        finalImg.style.opacity = '0'; // Hide image on resize
+        fadeInTriggered = false;
+        finalImg.style.opacity = '0';
         headerCanvas.width = window.innerWidth;
         headerCanvas.height = 350;
 
@@ -362,7 +396,16 @@
         starfieldCanvas.width = window.innerWidth;
         starfieldCanvas.height = document.body.scrollHeight;
         stars = [];
-        for (let i = 0; i < numStars; i++) { stars.push({ x: Math.random() * starfieldCanvas.width, y: Math.random() * starfieldCanvas.height, radius: Math.random() * 1.2, alpha: Math.random(), twinkleSpeed: Math.random() * 0.03 + 0.01, color: Math.random() > 0.3 ? '#00ddff' : '#ffffff' }); }
+        for (let i = 0; i < numStars; i++) { 
+            stars.push({ 
+                x: Math.random() * starfieldCanvas.width, 
+                y: Math.random() * starfieldCanvas.height, 
+                radius: Math.random() * 1.2, 
+                alpha: Math.random(), 
+                twinkleSpeed: Math.random() * 0.03 + 0.01, 
+                color: Math.random() > 0.3 ? '#00ddff' : '#ffffff' 
+            }); 
+        }
         animateStars();
     }
     
@@ -402,8 +445,13 @@
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            setupHeaderAnimation();
-            initStars();
+            // --- MODIFICATION: Only restart header animation if not completed ---
+            if (!headerAnimationCompleted) {
+                setupHeaderAnimation();
+            } else {
+                // Just update starfield on resize
+                initStars();
+            }
         }, 250);
     });
 
@@ -439,5 +487,3 @@
     </script>
 </body>
 </html>
-
-
