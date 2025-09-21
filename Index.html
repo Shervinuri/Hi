@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SHΞN™ Nebula Pro</title>
+
+    <title>Hiddify.Netlify.App</title>
+
     <script src="https://cdn.tailwindcss.com"></script>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --color-background: #010412;
@@ -24,9 +32,6 @@
             color: var(--color-text);
             overflow-x: hidden;
             cursor: pointer; 
-        }
-        /* --- FIX: Make all text non-selectable --- */
-        body, p, h1, h2, h3, span, div, a {
             user-select: none;
             -webkit-user-select: none;
             -moz-user-select: none;
@@ -54,7 +59,6 @@
             height: 100%;
             object-fit: contain;
         }
-        /* --- MODIFIED: Transitions are now smoother and handled carefully in JS --- */
         #headerCanvas { 
             z-index: 2;
             transition: opacity 1.5s ease-out;
@@ -76,7 +80,6 @@
             animation: content-fade-in 1s ease-out 0.5s forwards;
             opacity: 0;
         }
-
         .rotated-layout-container {
             display: flex;
             flex-direction: column;
@@ -92,7 +95,6 @@
             max-width: 65ch; 
             text-align: center;
         }
-
         .rotatable-item:hover {
             transform: rotateX(0deg) rotateY(0deg) !important;
         }
@@ -100,7 +102,6 @@
         p.rotatable-item {
             text-align: justify;
         }
-
         .pro-button {
             position: relative;
             background: linear-gradient(to right, var(--color-secondary), var(--color-primary));
@@ -116,6 +117,11 @@
             max-width: 20rem; 
             margin-left: auto;
             margin-right: auto;
+            /* --- MODIFIED: Enforce consistent height --- */
+            height: 52px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         .pro-button span {
             position: relative;
@@ -127,7 +133,7 @@
             background: #11142A;
             border-radius: 11px;
             transition: all 0.3s ease;
-            padding: 0.75rem 0;
+            /* Padding is now handled by parent's height and flex centering */
         }
         .pro-button:hover {
             box-shadow: 0 0 40px rgba(0, 221, 255, 0.6);
@@ -145,14 +151,10 @@
             border-radius: 10px;
             transition: all 0.3s ease;
             text-align: center;
-            /* --- FIX: Fixed height and padding for uniform size --- */
-            height: 48px;
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0.5rem;
             min-height: 48px;
-            box-sizing: border-box;
         }
         .app-link:hover {
             background: rgba(127, 90, 240, 0.2);
@@ -161,6 +163,10 @@
             transform: scale(1.05);
         }
         
+        .span-full {
+            grid-column: 1 / -1;
+        }
+
         .footer-gradient {
             background: linear-gradient(90deg, #677198, white, var(--color-primary));
             -webkit-background-clip: text;
@@ -170,7 +176,6 @@
         }
         
         @keyframes gradient-animation { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-
         .text-gradient-animated {
             background: linear-gradient(90deg, var(--color-primary), white, #b0b8d8, var(--color-primary));
             background-size: 250% 100%;
@@ -179,9 +184,11 @@
             animation: text-flow 8s ease-in-out infinite;
         }
         @keyframes text-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
     </style>
 </head>
 <body class="antialiased">
+
     <canvas id="starfieldCanvas"></canvas>
     
     <header class="header-container">
@@ -193,19 +200,17 @@
         <div class="content-card max-w-4xl mx-auto">
             <div class="rotated-layout-container">
                 
-                <h1 class="rotatable-item text-3xl md:text-4xl font-black text-white">مدل‌ فکرکردن متفاوت!</h1>
+                <h1 class="rotatable-item text-3xl md:text-4xl font-black text-white">  ! زاویه‌ی دید متفاوت  </h1>
                 
                 <p class="rotatable-item text-gradient-animated text-base md:text-lg leading-relaxed">بهبود سبک تفکر و ایجاد نگرش متفاوت از عوامل اصلی در کسب نتایج متفاوت در مسائل مشترک با دیگران خواهد بود . نمیگم قطعا برتری ایجاد می‌کنه اما عامل تمایز میشه ! با تقویت این خاصه، تفاوت هایی رو خلق می‌کنید که گاهی از متفکرین نامدار عصر و حیطه‌ای که توش هستید بیشتر مورد توجه قرار میگیره.</p>
                 <p class="rotatable-item text-gradient-animated text-base md:text-lg leading-relaxed">در طراحی مکانیزم کالکشنر های v2ray همیشه ملاک انتخاب منبع ، مخزن های بروز و فعال سطح وب بوده، و هزاران نمونه از پروژه های عملیاتی شده با این منطق در منابع گیت‌هاب در دسترس هست و خوب عملکرد مطلوبی هم ازشون شاهد هستیم.</p>
                 <p class="rotatable-item text-gradient-animated text-base md:text-lg leading-relaxed">اما اینبار من سعی کردم با یه ورک فلوی Ai سازو کاری رو پیاده کنم با مقصدی مشابه اما مبدآ ای متفاوت ! این سورس تو بازه های زمانی مشخص برخلاف مکانیزم رایج یه دنبال منابعی از کانفیگ های v2ray می‌گرده که بیش از یکسال از آخرین بروزرسانیشون گذشته باشه! با اسکن دقیق و تک به تک این مخازن خاک خورده شاید با ضریب شانس یک به صد مواری فعالی رو پیدا می‌کنه که حکم پیداکردن یک جام شراب کهنه در دل انباری های متروک رو داره. پیشکسوت های صنف می‌دونند وقتی یه پروکسی بعد از یکسال فعال باشه یعنی چی...</p>
                 <p class="rotatable-item text-gradient-animated text-base md:text-lg leading-relaxed">هم اکنون چکیده ی این کنکاش، به انضمام تعداد معقولی کانفیگ بروز شونده در مخزن زیر به دو صورت برای شما عزیزان در دسترس خواهد بود!</p>
-
                 <h2 class="rotatable-item text-xl font-bold text-white mt-8">ارجاع مستقیم</h2>
                 <p class="rotatable-item text-slate-400 text-sm">در صورتی که از قبل اقدام به نصب و فعال سازی اپلیکیشن  <span class="font-bold text-white">Hiddify Next</span>روی دستگاه خود کرده باشید تنها کافیست روی لینک زیر کلیک کرده ، لحظاتی صبر کنید  تا این اشتراک به همراه کلیه تنظیمات بهینه شده ی هیدیفای برای شبکه اینترنت ایران به انضمام دستورات لازم برای آپدیت های منظم (هرساعت یکبار) به صورت اتومات به کلاینت شما تزریق و اعمال شود .</p>
                 <a href="hiddify://install-config/?url=https://hiddify.netlify.app" rel="noopener noreferrer" class="rotatable-item pro-button">
                     <span>hiddify.netlify.app</span>
                 </a>
-
                 <h2 class="rotatable-item text-xl font-bold text-white mt-8">کپی لینک</h2>
                 <p class="rotatable-item text-slate-400 text-sm">برای سایر کلاینت‌ها، میتوانید با کپی کردن همین آدرس و جایگذاری به عنوان سابلینک (لینک اشتراک) با اعمال تنظیمات دستی دلخواه برای اتصال و آپدیت از محتویات منبع بهره مند شوید.</p>
                 <button id="copy-btn" class="rotatable-item pro-button">
@@ -224,17 +229,17 @@
                         <a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="noopener noreferrer" class="app-link p-2">Shadowrocket</a>
                         <a href="https://github.com/xchacha20-poly1305/husi/releases/tag/v0.13.0" target="_blank" rel="noopener noreferrer" class="app-link p-2">husi</a>
                         <a href="https://github.com/Matsuridayo/NekoBoxForAndroid/releases" target="_blank" rel="noopener noreferrer" class="app-link p-2">Nekobox</a>
-                     <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener noreferrer" class="app-link p-2">Hiddify Next</a>                     
+                        <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener noreferrer" class="app-link p-2 span-full">Hiddify Next</a>
                     </div>
+                    <footer class="mt-12">
+                         <a href="https://t.me/aishervin" target="_blank" rel="noopener noreferrer" class="inline-block transition-transform hover:scale-105">
+                             <p class="footer-gradient text-lg font-bold">Exclusive ☬SHΞN™ made</p>
+                         </a>
+                    </footer>
                 </div>
-                
-                <a href="https://t.me/aishervin" target="_blank" rel="noopener noreferrer" class="inline-block transition-transform hover:scale-105">
-                    <p class="footer-gradient text-lg font-bold">Exclusive ☬SHΞN™ made</p>
-                </a>
             </div> 
         </div>
     </main>
-
     <script>
         // --- Particle Header Script (MODIFIED for glitch-free cross-fade) ---
         const headerCanvas = document.getElementById('headerCanvas');
@@ -251,12 +256,10 @@
         let particles = [];
         let animationPhase = 'forming'; // 'forming', 'dissolving'
         let animationFrameId;
-
         headerImg.onload = () => {
             const imgAspectRatio = headerImg.naturalWidth / headerImg.naturalHeight;
             const canvasAspectRatio = headerCanvas.width / headerCanvas.height;
             let renderW, renderH, startX, startY;
-
             if (imgAspectRatio > canvasAspectRatio) {
                 renderW = headerCanvas.width;
                 renderH = headerCanvas.width / imgAspectRatio;
@@ -266,7 +269,6 @@
             }
             startX = (headerCanvas.width - renderW) / 2;
             startY = (headerCanvas.height - renderH) / 2;
-
             headerCtx.drawImage(headerImg, startX, startY, renderW, renderH);
             let imgData = headerCtx.getImageData(0, 0, headerCanvas.width, headerCanvas.height);
             headerCtx.clearRect(0, 0, headerCanvas.width, headerCanvas.height);
@@ -288,11 +290,9 @@
             }
             animateParticles();
         };
-
         function animateParticles() {
             headerCtx.clearRect(0, 0, headerCanvas.width, headerCanvas.height);
             let allSettled = true;
-
             particles.forEach(p => {
                 if (animationPhase === 'forming') {
                     if (!p.settled) {
@@ -316,7 +316,6 @@
                 headerCtx.fillStyle = p.color;
                 headerCtx.fillRect(p.x, p.y, 1.5, 1.5);
             });
-
             if (allSettled && animationPhase === 'forming') {
                 animationPhase = 'dissolving';
                 // --- FIX: Start the cross-fade ---
@@ -328,7 +327,6 @@
                     headerCanvas.style.display = 'none';
                 }, 1500); // Matches CSS transition duration
             }
-
             if (animationPhase === 'forming') {
                 animationFrameId = requestAnimationFrame(animateParticles);
             }
@@ -377,7 +375,6 @@
             const copyTextSpan = document.getElementById('copy-text');
             const checkIcon = document.getElementById('check-icon');
             const originalText = copyTextSpan.innerText;
-
             const showFeedback = () => {
                 copyTextSpan.innerText = 'کپی شد!';
                 checkIcon.style.display = 'inline-block';
@@ -403,7 +400,6 @@
             }
             document.body.removeChild(textArea);
         });
-
         // --- Interactive 3D Random Layout Script (No changes) ---
         const contentBlocks = document.querySelectorAll('.rotatable-item');
         function randomizeLayout() {
@@ -416,7 +412,7 @@
         document.body.addEventListener('click', randomizeLayout);
         document.body.addEventListener('touchstart', randomizeLayout, { passive: true });
         window.addEventListener('load', randomizeLayout);
-
     </script>
 </body>
 </html>
+
