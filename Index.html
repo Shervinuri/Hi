@@ -179,30 +179,6 @@
             animation: text-flow 8s ease-in-out infinite;
         }
         @keyframes text-flow { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        
-        /* --- FIX: Style for the telegram link --- */
-        .telegram-link {
-            background: rgba(127, 90, 240, 0.05);
-            border: 1px solid rgba(127, 90, 240, 0.2);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            text-align: center;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.5rem;
-            min-height: 48px;
-            box-sizing: border-box;
-            color: var(--color-text);
-            text-decoration: none;
-        }
-        .telegram-link:hover {
-            background: rgba(127, 90, 240, 0.2);
-            border-color: var(--color-secondary);
-            color: white;
-            transform: scale(1.05);
-        }
     </style>
 </head>
 <body class="antialiased">
@@ -242,22 +218,19 @@
                 <div class="rotatable-item text-center w-full mt-8">
                     <h3 class="font-bold text-white mb-4">کلاینت‌های پشتیبانی شده</h3>
                     <div class="app-link-grid max-w-lg mx-auto">
-                        <a href="https://github.com/GFW-knocker/MahsaNG/releases/tag/v14-(1404-5-30)" target="_blank" rel="noopener noreferrer" class="app-link">Mahsa ng</a>
-                        <a href="https://github.com/KaringX/karing/releases/tag/v1.2.4.865" target="_blank" rel="noopener noreferrer" class="app-link">Karing</a> 
-                        <a href="https://github.com/2dust/v2rayNG/releases/tag/1.10.23" target="_blank" rel="noopener noreferrer" class="app-link">v2rayng</a>
-                        <a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="noopener noreferrer" class="app-link">Shadowrocket</a>
-                        <a href="https://github.com/xchacha20-poly1305/husi/releases/tag/v0.13.0" target="_blank" rel="noopener noreferrer" class="app-link">husi</a>
-                        <a href="https://github.com/Matsuridayo/NekoBoxForAndroid/releases" target="_blank" rel="noopener noreferrer" class="app-link">Nekobox</a>
-                     <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener noreferrer" class="app-link">Hiddify Next</a>                     
+                        <a href="https://github.com/GFW-knocker/MahsaNG/releases/tag/v14-(1404-5-30)" target="_blank" rel="noopener noreferrer" class="app-link p-2">Mahsa ng</a>
+                        <a href="https://github.com/KaringX/karing/releases/tag/v1.2.4.865" target="_blank" rel="noopener noreferrer" class="app-link p-2">Karing</a> 
+                        <a href="https://github.com/2dust/v2rayNG/releases/tag/1.10.23" target="_blank" rel="noopener noreferrer" class="app-link p-2">v2rayng</a>
+                        <a href="https://apps.apple.com/us/app/shadowrocket/id932747118" target="_blank" rel="noopener noreferrer" class="app-link p-2">Shadowrocket</a>
+                        <a href="https://github.com/xchacha20-poly1305/husi/releases/tag/v0.13.0" target="_blank" rel="noopener noreferrer" class="app-link p-2">husi</a>
+                        <a href="https://github.com/Matsuridayo/NekoBoxForAndroid/releases" target="_blank" rel="noopener noreferrer" class="app-link p-2">Nekobox</a>
+                     <a href="https://github.com/hiddify/hiddify-next/releases" target="_blank" rel="noopener noreferrer" class="app-link p-2">Hiddify Next</a>                     
                     </div>
                 </div>
                 
-                <!-- --- FIX: Fixed the footer structure and made it consistent --- -->
-                <div class="rotatable-item text-center w-full mt-8">
-                    <a href="https://t.me/aishervin" target="_blank" rel="noopener noreferrer" class="telegram-link">
-                        <p class="footer-gradient text-lg font-bold m-0">Exclusive ☬SHΞN™ made</p>
-                    </a>
-                </div>
+                <a href="https://t.me/aishervin" target="_blank" rel="noopener noreferrer" class="inline-block transition-transform hover:scale-105">
+                    <p class="footer-gradient text-lg font-bold">Exclusive ☬SHΞN™ made</p>
+                </a>
             </div> 
         </div>
     </main>
